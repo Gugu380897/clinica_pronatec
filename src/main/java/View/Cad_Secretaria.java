@@ -291,34 +291,37 @@ public class Cad_Secretaria extends javax.swing.JFrame {
 
     private void jSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSalvarActionPerformed
         // TODO add your handling code here:
-
+        
         String nome_secretaria, cpf, rg, telefone, endereco, sexo, senha; //Cria Variaveis
-
-        //varaiveis recebem o que digitar no formulario
-        nome_secretaria = Nometext.getText();
-        cpf = CpfText.getText();
-        rg = Rgtext.getText();
-        telefone = Telefonefield.getText();
-        endereco = Enderecotext.getText();
-        sexo = Sexofield.getText();
-        senha = SenhaField.getText();
-
-        Secretaria objsecretariaCT = new Secretaria();
-        objsecretariaCT.setNome_secretaria(nome_secretaria);
-        objsecretariaCT.setCpf(cpf);
-        objsecretariaCT.setRg(rg);
-        objsecretariaCT.setTelefone(telefone);
-        objsecretariaCT.setEndereco(endereco);
-        objsecretariaCT.setSexo(sexo);
-        objsecretariaCT.setSenha(senha);
-
-        SecretariaDAO objsecretariadao = new SecretariaDAO();
+       
+       //varaiveis recebem o que digitar no formulario
+       nome_secretaria = Nometext.getText();
+       cpf = CpfText.getText();
+       rg = Rgtext.getText();
+       telefone = Telefonefield.getText();
+       endereco = Enderecotext.getText();
+       sexo = Sexofield.getText();
+       senha = SenhaField.getText();
+       
+       
+       
+       Secretaria objsecretariaCT = new Secretaria();
+       objsecretariaCT.setNome_secretaria(nome_secretaria);
+       objsecretariaCT.setCpf(cpf);
+       objsecretariaCT.setRg(rg);
+       objsecretariaCT.setTelefone(telefone);
+       objsecretariaCT.setEndereco(endereco);
+       objsecretariaCT.setSexo(sexo);
+       objsecretariaCT.setSenha(senha);
+       
+       SecretariaDAO objsecretariadao = new SecretariaDAO();
         try {
             objsecretariadao.addSecretaria(objsecretariaCT);
+            // Limpa a JTextArea antes de mostrar
+            jAreaTexto.append("Secretario(a) Cadastrado(a)!\n");
         } catch (SQLException ex) {
             Logger.getLogger(Cad_Secretaria.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }//GEN-LAST:event_jSalvarActionPerformed
 
     private void jConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConsultarActionPerformed

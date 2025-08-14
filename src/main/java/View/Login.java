@@ -7,7 +7,6 @@ package View;
 import javax.swing.JOptionPane;
 import DAO.SecretariaDAO;
 import Entidades.Secretaria;
-import View.Tela_Inicial;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -114,8 +113,8 @@ public class Login extends javax.swing.JFrame {
         if(senha.equals("")|| cpf.equals("")){
           JOptionPane.showMessageDialog(null, "Digite o usuario e a senha.");
         }else{
-            if (secretariaLogada == null) {
-                Tela_Inicial cad = new Tela_Inicial();
+            if (secretariaLogada != null) {
+                Tela_Secretaria cad = new Tela_Secretaria();
                 cad.setVisible(true);
                 dispose();
             }
