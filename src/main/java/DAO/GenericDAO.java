@@ -29,7 +29,7 @@ public class GenericDAO {
         
         try {
             Connection cn;
-            cn = DriverManager.getConnection("jdbc:mysql://localhost/consultorio_medico", "root", " ");
+            cn = DriverManager.getConnection("jdbc:mysql://localhost/consultorio_medico", "root", "");
             //"jdbc:mysql://localhost/consultorio_medico", "root", "root"
            
             return cn;

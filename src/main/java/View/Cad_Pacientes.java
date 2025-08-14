@@ -4,6 +4,12 @@
  */
 package View;
 
+import DAO.PacienteDAO;
+import Entidades.Paciente;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author LEII
@@ -297,21 +303,21 @@ public class Cad_Pacientes extends javax.swing.JFrame {
         Paciente objpacienteCT = new Paciente();
         objpacienteCT.setId(Id);
         objpacienteCT.setNome(Nome);
-        objpacienteCT.setCPF(CPF);
+        objpacienteCT.setCpf(CPF);
         objpacienteCT.setTelefone(Telefone);
-        objpacienteCT.setEndereço(Endereço);
-        objpacienteCT.setConvênio(Convênio);
-        objpacienteCT.setRG(RG);
+        objpacienteCT.setEndereco(Endereço);
+        objpacienteCT.setConvenio(Convênio);
+        objpacienteCT.setRg(RG);
         objpacienteCT.setSexo(Sexo);
 
-        Paciente objpacientedao = new PacienteDAO();
+        PacienteDAO objpacientedao = new PacienteDAO();
 
         try {
             objpacientedao.deletePaciente(objpacienteCT);
             txtarea.append("Paciente deletado!\n");
         } catch (SQLException ex) {
 
-            Logger.getLogger(Cad_Paciente)
+            Logger.getLogger(Cad_Pacientes.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
