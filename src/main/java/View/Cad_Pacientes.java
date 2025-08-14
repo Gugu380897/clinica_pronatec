@@ -4,6 +4,14 @@
  */
 package View;
 
+import DAO.PacienteDAO;
+import Entidades.Paciente;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
+
 /**
  *
  * @author LEII
@@ -283,35 +291,16 @@ public class Cad_Pacientes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        String Nome, CPF, Telefone, Endereço, Convênio, RG, Sexo;
+     ID = Integer.parseInt(idtxt.getText());
 
-        int Id = Integer.parseInt(idtxt.getText());
-        Nome = nometxt.getText();
-        CPF = cpftxt.getText();
-        Telefone = teltxt.getText();
-        Endereço = endtxt.getText();
-        Convênio = contxt.getText();
-        RG = rgtxt.getText();
-        Sexo = sexotxt.getText();
-
-        Paciente objpacienteCT = new Paciente();
-        objpacienteCT.setId(Id);
-        objpacienteCT.setNome(Nome);
-        objpacienteCT.setCPF(CPF);
-        objpacienteCT.setTelefone(Telefone);
-        objpacienteCT.setEndereço(Endereço);
-        objpacienteCT.setConvênio(Convênio);
-        objpacienteCT.setRG(RG);
-        objpacienteCT.setSexo(Sexo);
-
-        Paciente objpacientedao = new PacienteDAO();
+         Paciente objpacientedao = new PacienteDAO();
 
         try {
             objpacientedao.deletePaciente(objpacienteCT);
             txtarea.append("Paciente deletado!\n");
         } catch (SQLException ex) {
 
-            Logger.getLogger(Cad_Paciente)
+            Logger.getLogger(Cad_Paciente.class.getName()). log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
