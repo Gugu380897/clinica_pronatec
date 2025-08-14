@@ -11,6 +11,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
 
+
+/**
+ *
+ * @author LEII
+ */
 public class Cad_Secretaria extends javax.swing.JFrame {
 
     /**

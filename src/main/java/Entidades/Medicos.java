@@ -17,6 +17,7 @@ public class Medicos {
     private String telefone;
     private String sexo;
     private String endereco;
+    private String Senha;
     
     public Medicos() {
     }
@@ -88,6 +89,20 @@ public class Medicos {
         @Override
     public String toString() {
         return nome_medico;
+    }
+
+    /**
+     * @return the Senha
+     */
+    public String getSenha() {
+        return Senha;
+    }
+
+    /**
+     * @param Senha the Senha to set
+     */
+    public void setSenha(String Senha) {
+        this.Senha = Senha;
     }
     
 }
