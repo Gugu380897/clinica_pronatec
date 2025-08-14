@@ -283,36 +283,7 @@ public class Cad_Pacientes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        String Nome, CPF, Telefone, Endereço, Convênio, RG, Sexo;
 
-        int Id = Integer.parseInt(idtxt.getText());
-        Nome = nometxt.getText();
-        CPF = cpftxt.getText();
-        Telefone = teltxt.getText();
-        Endereço = endtxt.getText();
-        Convênio = contxt.getText();
-        RG = rgtxt.getText();
-        Sexo = sexotxt.getText();
-
-        Paciente objpacienteCT = new Paciente();
-        objpacienteCT.setId(Id);
-        objpacienteCT.setNome(Nome);
-        objpacienteCT.setCPF(CPF);
-        objpacienteCT.setTelefone(Telefone);
-        objpacienteCT.setEndereço(Endereço);
-        objpacienteCT.setConvênio(Convênio);
-        objpacienteCT.setRG(RG);
-        objpacienteCT.setSexo(Sexo);
-
-        Paciente objpacientedao = new PacienteDAO();
-
-        try {
-            objpacientedao.deletePaciente(objpacienteCT);
-            txtarea.append("Paciente deletado!\n");
-        } catch (SQLException ex) {
-
-            Logger.getLogger(Cad_Paciente)
-        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void idtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idtxtActionPerformed
