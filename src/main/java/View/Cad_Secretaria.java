@@ -4,6 +4,12 @@
  */
 package View;
 
+import DAO.SecretariaDAO;
+import Entidades.Secretaria;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author LEII
