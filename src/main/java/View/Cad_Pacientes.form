@@ -240,9 +240,6 @@
     <Component class="javax.swing.JTextField" name="contxt">
     </Component>
     <Component class="javax.swing.JTextField" name="idtxt">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="idtxtActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
@@ -272,9 +269,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="nometxt">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nometxtActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel12">
       <Properties>
@@ -296,14 +290,8 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="cpftxt">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cpftxtActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="rgtxt">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rgtxtActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>

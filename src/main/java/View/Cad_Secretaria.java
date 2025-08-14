@@ -4,6 +4,14 @@
  */
 package View;
 
+import DAO.SecretariaDAO;
+import Entidades.Secretaria;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.SwingUtilities;
+
+
 /**
  *
  * @author LEII
@@ -283,10 +291,73 @@ public class Cad_Secretaria extends javax.swing.JFrame {
 
     private void jSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSalvarActionPerformed
         // TODO add your handling code here:
-
+        
         String nome_secretaria, cpf, rg, telefone, endereco, sexo, senha; //Cria Variaveis
+       
+       //varaiveis recebem o que digitar no formulario
+       nome_secretaria = Nometext.getText();
+       cpf = CpfText.getText();
+       rg = Rgtext.getText();
+       telefone = Telefonefield.getText();
+       endereco = Enderecotext.getText();
+       sexo = Sexofield.getText();
+       senha = SenhaField.getText();
+       
+       
+       
+       Secretaria objsecretariaCT = new Secretaria();
+       objsecretariaCT.setNome_secretaria(nome_secretaria);
+       objsecretariaCT.setCpf(cpf);
+       objsecretariaCT.setRg(rg);
+       objsecretariaCT.setTelefone(telefone);
+       objsecretariaCT.setEndereco(endereco);
+       objsecretariaCT.setSexo(sexo);
+       objsecretariaCT.setSenha(senha);
+       
+       SecretariaDAO objsecretariadao = new SecretariaDAO();
+        try {
+            objsecretariadao.addSecretaria(objsecretariaCT);
+            // Limpa a JTextArea antes de mostrar
+            jAreaTexto.append("Secretario(a) Cadastrado(a)!\n");
+        } catch (SQLException ex) {
+            Logger.getLogger(Cad_Secretaria.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jSalvarActionPerformed
 
-        //varaiveis recebem o que digitar no formulario
+    private void jConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConsultarActionPerformed
+        // TODO add your handling code here:
+
+       SecretariaDAO dao = new SecretariaDAO();
+
+    try {
+        // Limpa a JTextArea antes de mostrar os dados
+        jAreaTexto.setText("");
+
+        // Chama o método listarFuncionarios()
+        for (Secretaria c : dao.getAllSecretaria()) {
+            jAreaTexto.append(
+                "ID: " + c.getId() +
+                "Nome: " + c.getNome_secretaria() +
+                "Cpf: " + c.getCpf() +
+                "Rg: " + c.getRg() +
+                "Telefone: " + c.getTelefone() + 
+                "Endereco: " + c.getEndereco() +
+                "Sexo: " + c.getSexo() + "\n"
+                
+            );
+        }
+
+    } catch (SQLException ex) {
+              jAreaTexto.append("Erro ao consultar Secretario(a)s: " + ex.getMessage());
+    }
+    }//GEN-LAST:event_jConsultarActionPerformed
+
+    private void jAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAtualizarActionPerformed
+         // TODO add your handling code here:
+        String nome_secretaria, cpf, rg, telefone, endereco, sexo, senha; //Cria Variáveis
+
+        // Variáveis recebem o que digitar no formulário
+        int id = Integer.parseInt(idField.getText());
         nome_secretaria = Nometext.getText();
         cpf = CpfText.getText();
         rg = Rgtext.getText();
@@ -295,7 +366,9 @@ public class Cad_Secretaria extends javax.swing.JFrame {
         sexo = Sexofield.getText();
         senha = SenhaField.getText();
 
+        // Cria objeto Secretaria
         Secretaria objsecretariaCT = new Secretaria();
+        objsecretariaCT.setId(id);
         objsecretariaCT.setNome_secretaria(nome_secretaria);
         objsecretariaCT.setCpf(cpf);
         objsecretariaCT.setRg(rg);
@@ -303,26 +376,60 @@ public class Cad_Secretaria extends javax.swing.JFrame {
         objsecretariaCT.setEndereco(endereco);
         objsecretariaCT.setSexo(sexo);
         objsecretariaCT.setSenha(senha);
+        
 
-        SecretariaDAO objsecretariadao = new SecretariaDAO();
+        // Usa invokeLater para operações de banco de dados
+        SwingUtilities.invokeLater(() -> {
+
+           SecretariaDAO objsecretariadao = new SecretariaDAO();
         try {
-            objsecretariadao.addSecretaria(objsecretariaCT);
-        } catch (SQLException ex) {
-            Logger.getLogger(Cad_Secretaria.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
-    }//GEN-LAST:event_jSalvarActionPerformed
+        objsecretariadao.updateSecretaria(objsecretariaCT);
 
-    private void jConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConsultarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jConsultarActionPerformed
-
-    private void jAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAtualizarActionPerformed
-        // TODO add your handling code here:
+            // Limpa a JTextArea antes de mostrar
+            jAreaTexto.setText(""); // Limpa o conteúdo anterior
+            jAreaTexto.append("Dados Atualizados com Sucesso!\n");
+        }   catch (SQLException ex) {
+                Logger.getLogger(Cad_Secretaria.class.getName()).log(Level.SEVERE, null, ex);
+                jAreaTexto.append("Erro ao atualizar dados: " + ex.getMessage() + "\n");
+            }
+        });           
     }//GEN-LAST:event_jAtualizarActionPerformed
 
     private void jDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDeleteActionPerformed
-        // TODO add your handling code here:
+       // TODO add your handling code here:
+        
+       String nome_secretaria, cpf, rg, telefone, endereco, sexo, senha; //Cria Variaveis
+       
+       //varaiveis recebem o que digitar no formulario
+       int id = Integer.parseInt(idField.getText());
+       nome_secretaria = Nometext.getText();
+       cpf = CpfText.getText();
+       rg = Rgtext.getText();
+       telefone = Telefonefield.getText();
+       endereco = Enderecotext.getText();
+       sexo = Sexofield.getText();
+       senha = SenhaField.getText();
+   
+       Secretaria objsecretariaCT = new Secretaria();
+       objsecretariaCT.setId(id);
+       objsecretariaCT.setNome_secretaria(nome_secretaria);
+       objsecretariaCT.setCpf(cpf);
+       objsecretariaCT.setRg(rg);
+       objsecretariaCT.setTelefone(telefone);
+       objsecretariaCT.setEndereco(endereco);
+       objsecretariaCT.setSexo(sexo);
+       objsecretariaCT.setSenha(senha);
+   
+        
+        SecretariaDAO objsecretariadao = new SecretariaDAO();
+        try {
+            objsecretariadao.deleteSecretaria(objsecretariaCT);
+            // Limpa a JTextArea antes de mostrar
+            jAreaTexto.append("Secretario(a) Deletado(a)!\n");
+        } catch (SQLException ex) {
+            Logger.getLogger(Cad_Secretaria.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jDeleteActionPerformed
 
     private void idFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idFieldActionPerformed

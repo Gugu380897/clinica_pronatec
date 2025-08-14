@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 
+
 /**
  *
  * @author LEII
@@ -110,12 +111,6 @@ public class Cad_Pacientes extends javax.swing.JFrame {
         txtarea.setRows(5);
         jScrollPane1.setViewportView(txtarea);
 
-        idtxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idtxtActionPerformed(evt);
-            }
-        });
-
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         jLabel1.setText("Cadastro do(a) Paciente:");
 
@@ -127,12 +122,6 @@ public class Cad_Pacientes extends javax.swing.JFrame {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Pronatec");
 
-        nometxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nometxtActionPerformed(evt);
-            }
-        });
-
         jLabel12.setFont(new java.awt.Font("Times New Roman", 3, 36)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("Clinica");
@@ -140,18 +129,6 @@ public class Cad_Pacientes extends javax.swing.JFrame {
         jLabel4.setText("CPF:");
 
         jLabel6.setText("RG:");
-
-        cpftxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cpftxtActionPerformed(evt);
-            }
-        });
-
-        rgtxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rgtxtActionPerformed(evt);
-            }
-        });
 
         jLabel7.setText("Telefone:");
 
@@ -291,34 +268,10 @@ public class Cad_Pacientes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-     ID = Integer.parseInt(idtxt.getText());
 
-         Paciente objpacientedao = new PacienteDAO();
+                                   
 
-        try {
-            objpacientedao.deletePaciente(objpacienteCT);
-            txtarea.append("Paciente deletado!\n");
-        } catch (SQLException ex) {
-
-            Logger.getLogger(Cad_Paciente.class.getName()). log(Level.SEVERE, null, ex);
-        }
     }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void idtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idtxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_idtxtActionPerformed
-
-    private void nometxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nometxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nometxtActionPerformed
-
-    private void cpftxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpftxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cpftxtActionPerformed
-
-    private void rgtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rgtxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rgtxtActionPerformed
 
     /**
      * @param args the command line arguments
