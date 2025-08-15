@@ -52,7 +52,7 @@ public class MedicosDAO  extends GenericDAO
         return medicos;
     }
     
-    public List<Medicos> getAllMedicosPorCrm(int crm) throws SQLException 
+    public List<Medicos> getAllMedicosPorCrm(Medicos crm) throws SQLException 
     {
         List<Medicos> medicos = new LinkedList<>();
         

@@ -40,7 +40,7 @@ public class PacienteDAO extends GenericDAO{
         return paciente;
     }
     
-    public List<Paciente> getAllPacientesPorCpf(String cpf) throws SQLException 
+    public List<Paciente> getAllPacientesPorCpf(Paciente cpf) throws SQLException 
     {
         List<Paciente> paciente = new LinkedList<>();
         
