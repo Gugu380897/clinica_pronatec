@@ -58,7 +58,7 @@ public class Cad_Medico extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        areatexto = new javax.swing.JTextArea();
         jLabel12 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -175,9 +175,9 @@ public class Cad_Medico extends javax.swing.JFrame {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Pronatec");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        areatexto.setColumns(20);
+        areatexto.setRows(5);
+        jScrollPane1.setViewportView(areatexto);
 
         jLabel12.setFont(new java.awt.Font("Times New Roman", 3, 36)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -367,13 +367,74 @@ public class Cad_Medico extends javax.swing.JFrame {
     }//GEN-LAST:event_txtnomeActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        String Nome, cpf, endereco, rg, telefone, sexo, senha;
+        
+        int id = Integer.parseInt(txtid.getText());
+        int Crm = Integer.parseInt(txtcrm.getText());
+        Nome = txtnome.getText();
+        cpf = txtcpf.getText();
+        telefone = txttele.getText();
+        rg = txtrg.getText();
+        endereco = txtend.getText();
+        sexo = txtsexo.getText();
+        senha = txtsenha.getText();
+ 
+       Medicos objmedico = new Medicos();
+        
+        objmedico.setId(id);
+        objmedico.setNome_medico(Nome);
+        objmedico.setCrm(Crm);
+        objmedico.setTelefone(telefone);
+        objmedico.setCpf(cpf);
+        objmedico.setRg(rg);
+        objmedico.setEndereco(endereco);
+        objmedico.setSexo(sexo);
+        objmedico.setSenha(senha);
+       
+       
+        MedicosDAO objmedicodao = new MedicosDAO();
+        try {
+            objmedicodao.updateMedicos(objmedico);
+            areatexto.append("Dados Atualizados com Sucesso!\n");
+        } catch (SQLException ex) {
+            Logger.getLogger(Cad_Medico.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        int id;
+        
+        id =  Integer.parseInt(txtid.getText());
+       
+        int confirm = JOptionPane.showConfirmDialog(
+        null,
+        "Tem certeza que quer deletar este registro ?",
+        "Comfirmação de Exclusão",
+        JOptionPane.YES_NO_OPTION
+        );
+        
+        if (confirm == JOptionPane.YES_OPTION){
+            
+        Medicos objmedico = new Medicos();
+        
+        objmedico.setId(id);
+        
+        
+        MedicosDAO objmedicoDAO = new MedicosDAO();
+        
+        try {           
+            objmedicoDAO.deleteMedicos(objmedico);
+            
+            areatexto.append("Dados deletados com Sucesso!\n");
+        } catch (SQLException ex){
+            Logger.getLogger(Cad_Medico.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
-
+        else{
+            areatexto.append(" O ato de: (deletar dados), foi cancelado pelo o usuário");
+        }
+    }
+    
     private void txtidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtidActionPerformed
@@ -407,7 +468,14 @@ public class Cad_Medico extends javax.swing.JFrame {
     }//GEN-LAST:event_txtsenhaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        txtnome.setText("");
+        txtcrm.setText("");
+        txtcpf.setText("");
+        txttele.setText("");
+        txtrg.setText("");
+        txtend.setText("");
+        txtsexo.setText("");
+        txtsenha.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -446,6 +514,7 @@ public class Cad_Medico extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea areatexto;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -464,7 +533,6 @@ public class Cad_Medico extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField txtcpf;
     private javax.swing.JTextField txtcrm;
     private javax.swing.JTextField txtend;
