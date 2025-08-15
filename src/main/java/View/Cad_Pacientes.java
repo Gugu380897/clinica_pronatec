@@ -9,6 +9,11 @@ import Entidades.Paciente;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import DAO.GenericDAO;
+
+
+
 
 /**
  *
@@ -37,11 +42,11 @@ public class Cad_Pacientes extends javax.swing.JFrame {
         sexotxt = new javax.swing.JTextField();
         endtxt = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        Salvar = new javax.swing.JButton();
+        consultar = new javax.swing.JButton();
+        atualizar = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+        deletar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtarea = new javax.swing.JTextArea();
@@ -77,28 +82,33 @@ public class Cad_Pacientes extends javax.swing.JFrame {
 
         jLabel9.setText("Sexo:");
 
-        jButton1.setText("Salvar");
-
-        jButton2.setText("Consultar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        Salvar.setText("Salvar");
+        Salvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                SalvarActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Atualizar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        consultar.setText("Consultar");
+        consultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                consultarActionPerformed(evt);
+            }
+        });
+
+        atualizar.setText("Atualizar");
+        atualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atualizarActionPerformed(evt);
             }
         });
 
         jLabel10.setText("Convênio:");
 
-        jButton4.setText("Deletar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        deletar.setText("Deletar");
+        deletar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                deletarActionPerformed(evt);
             }
         });
 
@@ -107,12 +117,6 @@ public class Cad_Pacientes extends javax.swing.JFrame {
         txtarea.setColumns(20);
         txtarea.setRows(5);
         jScrollPane1.setViewportView(txtarea);
-
-        idtxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idtxtActionPerformed(evt);
-            }
-        });
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         jLabel1.setText("Cadastro do(a) Paciente:");
@@ -125,12 +129,6 @@ public class Cad_Pacientes extends javax.swing.JFrame {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Pronatec");
 
-        nometxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nometxtActionPerformed(evt);
-            }
-        });
-
         jLabel12.setFont(new java.awt.Font("Times New Roman", 3, 36)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("Clinica");
@@ -138,18 +136,6 @@ public class Cad_Pacientes extends javax.swing.JFrame {
         jLabel4.setText("CPF:");
 
         jLabel6.setText("RG:");
-
-        cpftxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cpftxtActionPerformed(evt);
-            }
-        });
-
-        rgtxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rgtxtActionPerformed(evt);
-            }
-        });
 
         jLabel7.setText("Telefone:");
 
@@ -199,13 +185,13 @@ public class Cad_Pacientes extends javax.swing.JFrame {
                                 .addComponent(sexotxt, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGap(24, 24, 24)
-                                .addComponent(jButton1)
+                                .addComponent(Salvar)
                                 .addGap(44, 44, 44)
-                                .addComponent(jButton2)
+                                .addComponent(consultar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton3)
+                                .addComponent(atualizar)
                                 .addGap(45, 45, 45)
-                                .addComponent(jButton4)
+                                .addComponent(deletar)
                                 .addGap(24, 24, 24))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -262,10 +248,10 @@ public class Cad_Pacientes extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(Salvar)
+                    .addComponent(consultar)
+                    .addComponent(atualizar)
+                    .addComponent(deletar))
                 .addGap(32, 32, 32))
         );
 
@@ -280,34 +266,137 @@ public class Cad_Pacientes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_endtxtActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarActionPerformed
+    PacienteDAO dao = new PacienteDAO();
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    try {
+        // Limpa a JTextArea antes de mostrar os dados
+        txtarea.setText("");
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // Chama o método listarFuncionarios()
+        for (Paciente c : dao.getAllPaciente()) {
+            txtarea.append(
+                "ID: " + c.getId() +
+                "Nome: " + c.getNome() +
+                "Cpf: " + c.getCpf() +
+                "Rg: " + c.getRg() +
+                "Telefone: " + c.getTelefone() + 
+                "Endereco: " + c.getEndereco() +
+                "Sexo: " + c.getSexo() + "\n" +
+                "Convênio" + c.getConvenio() 
 
-    }//GEN-LAST:event_jButton4ActionPerformed
+                
+            );
+        }
 
-    private void idtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idtxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_idtxtActionPerformed
+    } catch (SQLException ex) {
+              txtarea.append("Erro ao consultar Secretario(a)s: " + ex.getMessage());
+    }                                 // TODO add your handling code here:
+    }//GEN-LAST:event_consultarActionPerformed
 
-    private void nometxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nometxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nometxtActionPerformed
+    private void SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarActionPerformed
+ String Nome, cpf, RG,Endereço, Telefone,Convênio, Sexo;
+ Nome = nometxt.getText();
+ cpf = cpftxt.getText();
+ RG = rgtxt.getText();
+ Endereço = endtxt.getText();
+ Telefone = teltxt.getText();
+ Convênio = contxt.getText();
+ Sexo = sexotxt.getText();
+ 
+Paciente objpaciente = new Paciente();
+objpaciente.setNome(Nome);
+objpaciente.setRg(RG);
+objpaciente.setCpf(cpf);
+objpaciente.setEndereco(Endereço);       
+objpaciente.setTelefone(Telefone);    
+objpaciente.setConvenio(Convênio);
+objpaciente.setSexo(Sexo);       
+        
 
-    private void cpftxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpftxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cpftxtActionPerformed
+PacienteDAO objpacienteDAO = new PacienteDAO();
 
-    private void rgtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rgtxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rgtxtActionPerformed
+ try {
+     objpacienteDAO.addPaciente(objpaciente);
+     
+     txtarea.append("Paciente Cadastrado(a)!\n");
+     
+ } catch (SQLException ex) {
+     Logger.getLogger(Cad_Pacientes.class.getName()).log(Level.SEVERE, null, ex);
+     
+ }
+        
+    }//GEN-LAST:event_SalvarActionPerformed
 
+    private void atualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarActionPerformed
+      String Nome, cpf, RG, Endereço, Convênio, Telefone, Sexo;
+      
+      try {
+          int id = Integer.parseInt(idtxt.getText());
+           Nome = nometxt.getText();
+           cpf = cpftxt.getText();
+           RG = rgtxt.getText();
+           Endereço = endtxt.getText();
+           Telefone = teltxt.getText();
+           Convênio = contxt.getText();
+           Sexo = sexotxt.getText();
+          
+           
+           Paciente objpaciente = new Paciente();
+           objpaciente.setId(id);
+           
+            objpaciente.setNome(Nome);
+            objpaciente.setRg(RG);
+            objpaciente.setCpf(cpf);
+            objpaciente.setEndereco(Endereço);       
+            objpaciente.setTelefone(Telefone);    
+            objpaciente.setConvenio(Convênio);
+            objpaciente.setSexo(Sexo);       
+           
+            PacienteDAO objpacientedao = new PacienteDAO();
+            
+            objpacientedao.updatePaciente(objpaciente);
+            txtarea.append("Dados atualizados\n!");
+      } catch (NumberFormatException ex) {
+          txtarea.append("Erro id deve ser inteiro");
+          return;        
+      } catch (SQLException ex) {
+          Logger.getLogger(Cad_Pacientes.class.getName()).log(Level.SEVERE, null, ex);
+          
+      } 
+      
+    }//GEN-LAST:event_atualizarActionPerformed
+
+    private void deletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletarActionPerformed
+        int id;
+    id = Integer.parseInt(idtxt.getText());
+
+    int confirm = JOptionPane.showConfirmDialog (
+    null,
+    "Tem certeza que deseja excluir?",
+    "Confirma  de exclusão",
+    JOptionPane.YES_NO_OPTION
+    );
+    if (confirm == JOptionPane.YES_OPTION) {
+
+    Paciente objpaciente = new Paciente();
+
+    objpaciente.setId(id);
+    PacienteDAO objpacientedao = new PacienteDAO();
+
+    try {
+    objpacientedao.deletePaciente(objpaciente);
+    txtarea.append("dados deletados com sucesso!\n");
+
+}
+
+catch(SQLException ex) {
+Logger.getLogger(Cad_Pacientes.class.getName()).log(Level.SEVERE, null, ex);
+
+
+}
+    }//GEN-LAST:event_deletarActionPerformed
+}
     /**
      * @param args the command line arguments
      */
@@ -344,14 +433,14 @@ public class Cad_Pacientes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Salvar;
+    private javax.swing.JButton atualizar;
+    private javax.swing.JButton consultar;
     private javax.swing.JTextField contxt;
     private javax.swing.JTextField cpftxt;
+    private javax.swing.JButton deletar;
     private javax.swing.JTextField endtxt;
     private javax.swing.JTextField idtxt;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
