@@ -4,6 +4,8 @@
  */
 package View;
 
+import View.Tela_Secretaria;
+
 /**
  *
  * @author LEII
@@ -110,6 +112,11 @@ public class Marcar_Consultas extends javax.swing.JFrame {
         jLabel9.setText("Médico");
 
         jButton5.setText("HOME");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -250,6 +257,14 @@ public class Marcar_Consultas extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        Tela_Secretaria telaSec;
+        telaSec = new Tela_Secretaria();
+        telaSec.setVisible(true);
+        dispose(); 
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
