@@ -367,12 +367,17 @@ public class Cad_Medico extends javax.swing.JFrame {
         areatexto.setText("");
 
         // Chama o método listarFuncionarios()
-        for (Medicos c : consultar.populateMedico()) {
+        for (Medicos c : consultar.getAllMedicos()) {
             areatexto.append(
                 "id: " + c.getId() +
-                ", Nome: " + c.getNome_medico() + 
+                ", crm: " + c.getCrm() +
+                ", nome: " + c.getNome_medico() +
+                ", cpf: " + c.getCpf() +
+                ", rg: " + c.getRg() +
+                ", telefone: " + c.getTelefone() +
                 ", endereco: " + c.getEndereco() +        
-                ", sexo: " + c.getSexo() + "\n"
+                ", sexo: " + c.getSexo() +
+                ", senha: " + c.getSenha() + "\n"
             );
         }
 
