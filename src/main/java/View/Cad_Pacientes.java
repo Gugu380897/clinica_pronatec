@@ -81,6 +81,11 @@ public class Cad_Pacientes extends javax.swing.JFrame {
         jLabel9.setText("Sexo:");
 
         jButton1.setText("Salvar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Consultar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -272,6 +277,37 @@ public class Cad_Pacientes extends javax.swing.JFrame {
                                    
 
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+ String Nome, cpf, RG,Endereço, Telefone,Convênio, Sexo;
+ Nome = nometxt.getText();
+ cpf = cpftxt.getText();
+ RG = rgtxt.getText();
+ Endereço = endtxt.getText();
+ Telefone = teltxt.getText();
+ Convênio = contxt.getText();
+ Sexo = sexotxt.getText();
+ 
+Paciente objpaciente = new Paciente();
+objpaciente.setNome(Nome);
+objpaciente.setRg(RG);
+objpaciente.setEndereco(Endereço);       
+objpaciente.setTelefone(Telefone);    
+objpaciente.setConvenio(Convênio);
+objpaciente.setSexo(Sexo);       
+        
+
+PacienteDAO objpacienteDAO = new PacienteDAO();
+
+ try {
+     objpacienteDAO.addPaciente(objpaciente);
+     
+ } catch (SQLException ex) {
+     Logger.getLogger(Cad_Pacientes.class.getName()).log(Level.SEVERE, null, ex);
+     
+ }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
