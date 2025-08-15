@@ -369,6 +369,7 @@ public class Cad_Medico extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         String Nome, cpf, endereco, rg, telefone, sexo, senha;
         
+    try {
         int id = Integer.parseInt(txtid.getText());
         int Crm = Integer.parseInt(txtcrm.getText());
         Nome = txtnome.getText();
@@ -393,9 +394,11 @@ public class Cad_Medico extends javax.swing.JFrame {
        
        
         MedicosDAO objmedicodao = new MedicosDAO();
-        try {
+        
             objmedicodao.updateMedicos(objmedico);
             areatexto.append("Dados Atualizados com Sucesso!\n");
+        } catch (NumberFormatException ex) {
+            areatexto.append("erro!\n");       
         } catch (SQLException ex) {
             Logger.getLogger(Cad_Medico.class.getName()).log(Level.SEVERE, null, ex);
         }
