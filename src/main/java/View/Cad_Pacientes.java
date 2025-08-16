@@ -122,6 +122,11 @@ public class Cad_Pacientes extends javax.swing.JFrame {
         jLabel1.setText("Cadastro do(a) Paciente:");
 
         jButton5.setText("Limpar Campos");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Nome:");
 
@@ -396,7 +401,18 @@ Logger.getLogger(Cad_Pacientes.class.getName()).log(Level.SEVERE, null, ex);
 
 }
     }//GEN-LAST:event_deletarActionPerformed
-}
+    }
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        nometxt.setText("");
+        cpftxt.setText("");
+        rgtxt.setText("");        
+        endtxt.setText(""); 
+        teltxt.setText("");        
+        contxt.setText("");        
+        sexotxt.setText("");    
+        idtxt.setText("");
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
