@@ -114,9 +114,9 @@ public class Login extends javax.swing.JFrame {
         if(senha.equals("")|| cpf.equals("")){
           JOptionPane.showMessageDialog(null, "Digite o usuario e a senha.");
         }else{
-            if (secretariaLogada == null) {
-                Tela_Inicial cad = new Tela_Inicial();
-                cad.setVisible(true);
+            if (secretariaLogada != null) {
+                Tela_Secretaria sec = new Tela_Secretaria();
+                sec.setVisible(true);
                 dispose();
             }
             else if (cpf.equals("Kevin")&& senha.equals("javah")){

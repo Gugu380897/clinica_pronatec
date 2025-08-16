@@ -12,8 +12,7 @@ package DAO;
     
     
     public class ConsultasDAO extends GenericDAO {
-        
-        
+
         public List<Consultas> getAllConsultas() throws SQLException 
         {
             List<Consultas> consultas = new LinkedList<>();
@@ -25,6 +24,20 @@ package DAO;
                 }
             }
             return consultas;
+        }
+        
+        public List<Consultas> getAllByCpfCrmConsultas() throws SQLException 
+        {
+            List<Consultas> consultas = new LinkedList<>();
+            
+            try (ResultSet rs = executeQuery("SELECT * FROM medicos WHERE crm = ?, UNION SELECT * FROM pacientes WHERE cpf = ?")) {
+                while(rs.next())
+                {
+                    consultas.add(populateConsultas(rs));
+                }
+            }
+            return consultas;
+  
         }
         
             private Consultas populateConsultas(ResultSet rs) throws SQLException {

@@ -102,7 +102,6 @@ public class SecretariaDAO extends GenericDAO{
         }else {
              return null;
         }
-
     }
 
     

@@ -4,10 +4,13 @@
  */
 package View;
 
-/**
- *
- * @author LEII
- */
+import DAO.ConsultasDAO;
+import Entidades.Consultas;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.SwingUtilities;
+
 public class Tela_Secretaria extends javax.swing.JFrame {
 
     /**
@@ -28,7 +31,7 @@ public class Tela_Secretaria extends javax.swing.JFrame {
 
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jAreaTexto = new javax.swing.JTextArea();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -36,20 +39,35 @@ public class Tela_Secretaria extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        jCrmMed = new javax.swing.JTextField();
+        jCpfClien = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton2.setText("HOME");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jHome(evt);
+            }
+        });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jAreaTexto.setColumns(20);
+        jAreaTexto.setRows(5);
+        jScrollPane1.setViewportView(jAreaTexto);
 
         jButton3.setText("Consultas");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jConsultas(evt);
+            }
+        });
 
         jButton4.setText("Visualizar Consultas");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jVisuConsulta(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 3, 36)); // NOI18N
         jLabel1.setText("Clinica ");
@@ -57,7 +75,7 @@ public class Tela_Secretaria extends javax.swing.JFrame {
         jButton5.setText("Cadastro Médicos");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                jCadMedicos(evt);
             }
         });
 
@@ -70,15 +88,15 @@ public class Tela_Secretaria extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("CPF do Cliente");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jCrmMed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jCrmMedActionPerformed(evt);
             }
         });
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        jCpfClien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                jCpfClienActionPerformed(evt);
             }
         });
 
@@ -95,8 +113,8 @@ public class Tela_Secretaria extends javax.swing.JFrame {
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jCrmMed, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCpfClien, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -135,11 +153,11 @@ public class Tela_Secretaria extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCrmMed, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCpfClien, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -153,17 +171,69 @@ public class Tela_Secretaria extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void jCadMedicos(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCadMedicos
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+        Cad_Medico cad = new Cad_Medico();
+        cad.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jCadMedicos
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jCrmMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCrmMedActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jCrmMedActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void jCpfClienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCpfClienActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_jCpfClienActionPerformed
+
+    private void jConsultas(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConsultas
+        // TODO add your handling code here:
+        Marcar_Consultas con = new  Marcar_Consultas();
+        con.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jConsultas
+
+    private void jVisuConsulta(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jVisuConsulta
+        // TODO add your handling code here:
+        
+       ConsultasDAO dao = new ConsultasDAO();
+
+    try {
+        // Limpa a JTextArea antes de mostrar os dados
+        jAreaTexto.setText("");
+        if(jCrmMed != null && jCpfClien != null) {
+            for (Consultas c : dao.getAllByCpfCrmConsultas()) {
+            jAreaTexto.append(
+                "ID Consulta: " + c.getIdConsulta() +
+                "ID Medico: " + c.getIdDoctor() +
+                "ID Paciente: " + c.getIdPaciente() +
+                "Data " + c.getData() +
+                "Hora " + c.getHora() + "\n"
+            );
+        }
+        }
+        // Chama o método listarFuncionarios()
+        for (Consultas c : dao.getAllConsultas()) {
+            jAreaTexto.append(
+                "ID Consulta: " + c.getIdConsulta() +
+                "ID Medico: " + c.getIdDoctor() +
+                "ID Paciente: " + c.getIdPaciente() +
+                "Data " + c.getData() +
+                "Hora " + c.getHora() + "\n"
+            );
+        }
+
+    } catch (SQLException ex) {
+              jAreaTexto.append("Erro ao Buscar Consultas: " + ex.getMessage());
+    }
+    }//GEN-LAST:event_jVisuConsulta
+
+    private void jHome(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jHome
+        // TODO add your handling code here:
+        Login log = new  Login();
+        log.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jHome
 
     /**
      * @param args the command line arguments
@@ -201,17 +271,17 @@ public class Tela_Secretaria extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea jAreaTexto;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JTextField jCpfClien;
+    private javax.swing.JTextField jCrmMed;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
