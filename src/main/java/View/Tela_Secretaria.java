@@ -201,17 +201,6 @@ public class Tela_Secretaria extends javax.swing.JFrame {
     try {
         // Limpa a JTextArea antes de mostrar os dados
         jAreaTexto.setText("");
-        if(jCrmMed != null && jCpfClien != null) {
-            for (Consultas c : dao.getAllByCpfCrmConsultas()) {
-            jAreaTexto.append(
-                "ID Consulta: " + c.getIdConsulta() +
-                "ID Medico: " + c.getIdDoctor() +
-                "ID Paciente: " + c.getIdPaciente() +
-                "Data " + c.getData() +
-                "Hora " + c.getHora() + "\n"
-            );
-        }
-        }
         // Chama o método listarFuncionarios()
         for (Consultas c : dao.getAllConsultas()) {
             jAreaTexto.append(

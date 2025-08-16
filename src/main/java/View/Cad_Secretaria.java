@@ -128,6 +128,11 @@ public class Cad_Secretaria extends javax.swing.JFrame {
         });
 
         jLimparCampo.setText("Limpar Campos");
+        jLimparCampo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jLimparCampoActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Nome:");
 
@@ -465,6 +470,17 @@ public class Cad_Secretaria extends javax.swing.JFrame {
         log.setVisible(true);
         dispose();
     }//GEN-LAST:event_jHomeActionPerformed
+
+    private void jLimparCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLimparCampoActionPerformed
+        // TODO add your handling code here:
+        Nometext.setText("");
+        CpfText.setText("");
+        Telefonefield.setText("");
+        Rgtext.setText("");
+        Enderecotext.setText("");
+        Sexofield.setText("");
+        SenhaField.setText("");
+    }//GEN-LAST:event_jLimparCampoActionPerformed
 
     /**
      * @param args the command line arguments

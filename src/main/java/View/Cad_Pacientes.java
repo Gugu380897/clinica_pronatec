@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import DAO.GenericDAO;
 
 
 
@@ -53,7 +52,7 @@ public class Cad_Pacientes extends javax.swing.JFrame {
         contxt = new javax.swing.JTextField();
         idtxt = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
+        jLimparCampos = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         nometxt = new javax.swing.JTextField();
@@ -121,7 +120,12 @@ public class Cad_Pacientes extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         jLabel1.setText("Cadastro do(a) Paciente:");
 
-        jButton5.setText("Limpar Campos");
+        jLimparCampos.setText("Limpar Campos");
+        jLimparCampos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jLimparCamposActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Nome:");
 
@@ -174,7 +178,7 @@ public class Cad_Pacientes extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(contxt, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(51, 51, 51)
-                                .addComponent(jButton5))
+                                .addComponent(jLimparCampos))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addGap(18, 18, 18)
@@ -243,7 +247,7 @@ public class Cad_Pacientes extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(contxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5))
+                    .addComponent(jLimparCampos))
                 .addGap(24, 24, 24)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
@@ -282,16 +286,17 @@ public class Cad_Pacientes extends javax.swing.JFrame {
                 "Rg: " + c.getRg() +
                 "Telefone: " + c.getTelefone() + 
                 "Endereco: " + c.getEndereco() +
-                "Sexo: " + c.getSexo() + "\n" +
-                "Convênio" + c.getConvenio() 
+                "Sexo: " + c.getSexo() +
+                "Convênio" + c.getConvenio() + "\n"
 
                 
             );
         }
-
-    } catch (SQLException ex) {
+    }
+     catch (SQLException ex) {
               txtarea.append("Erro ao consultar Secretario(a)s: " + ex.getMessage());
     }                                 // TODO add your handling code here:
+
     }//GEN-LAST:event_consultarActionPerformed
 
     private void SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarActionPerformed
@@ -358,7 +363,7 @@ PacienteDAO objpacienteDAO = new PacienteDAO();
             objpacientedao.updatePaciente(objpaciente);
             txtarea.append("Dados atualizados\n!");
       } catch (NumberFormatException ex) {
-          txtarea.append("Erro id deve ser inteiro");
+          txtarea.append("Erro id deve ser inteiro \n!");
           return;        
       } catch (SQLException ex) {
           Logger.getLogger(Cad_Pacientes.class.getName()).log(Level.SEVERE, null, ex);
@@ -390,12 +395,24 @@ PacienteDAO objpacienteDAO = new PacienteDAO();
 
 }
 
-catch(SQLException ex) {
-Logger.getLogger(Cad_Pacientes.class.getName()).log(Level.SEVERE, null, ex);
+    catch(SQLException ex) {
+    Logger.getLogger(Cad_Pacientes.class.getName()).log(Level.SEVERE, null, ex);
 
 
-}
+        }
+    }
     }//GEN-LAST:event_deletarActionPerformed
+    
+    private void jLimparCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLimparCamposActionPerformed
+        // TODO add your handling code here:
+        nometxt.setText("");
+        cpftxt.setText("");
+        teltxt.setText("");
+        rgtxt.setText("");
+        endtxt.setText("");
+        sexotxt.setText("");
+        contxt.setText("");
+    }//GEN-LAST:event_jLimparCamposActionPerformed
 }
     /**
      * @param args the command line arguments
@@ -441,7 +458,6 @@ Logger.getLogger(Cad_Pacientes.class.getName()).log(Level.SEVERE, null, ex);
     private javax.swing.JButton deletar;
     private javax.swing.JTextField endtxt;
     private javax.swing.JTextField idtxt;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -453,6 +469,7 @@ Logger.getLogger(Cad_Pacientes.class.getName()).log(Level.SEVERE, null, ex);
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JButton jLimparCampos;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nometxt;
     private javax.swing.JTextField rgtxt;
