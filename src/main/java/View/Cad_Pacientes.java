@@ -267,136 +267,21 @@ public class Cad_Pacientes extends javax.swing.JFrame {
     }//GEN-LAST:event_endtxtActionPerformed
 
     private void consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarActionPerformed
-    PacienteDAO dao = new PacienteDAO();
-
-    try {
-        // Limpa a JTextArea antes de mostrar os dados
-        txtarea.setText("");
-
-        // Chama o método listarFuncionarios()
-        for (Paciente c : dao.getAllPaciente(cpf)) {
-            txtarea.append(
-                "ID: " + c.getId() +
-                "Nome: " + c.getNome() +
-                "Cpf: " + c.getCpf() +
-                "Rg: " + c.getRg() +
-                "Telefone: " + c.getTelefone() + 
-                "Endereco: " + c.getEndereco() +
-                "Sexo: " + c.getSexo() + "\n" +
-                "Convênio" + c.getConvenio() 
-
-                
-            );
-        }
-
-    } catch (SQLException ex) {
-              txtarea.append("Erro ao consultar Secretario(a)s: " + ex.getMessage());
-    }                                 // TODO add your handling code here:
+                                // TODO add your handling code here:
     }//GEN-LAST:event_consultarActionPerformed
 
     private void SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarActionPerformed
- String Nome, cpf, RG,Endereço, Telefone,Convênio, Sexo;
- Nome = nometxt.getText();
- cpf = cpftxt.getText();
- RG = rgtxt.getText();
- Endereço = endtxt.getText();
- Telefone = teltxt.getText();
- Convênio = contxt.getText();
- Sexo = sexotxt.getText();
  
-Paciente objpaciente = new Paciente();
-objpaciente.setNome(Nome);
-objpaciente.setRg(RG);
-objpaciente.setCpf(cpf);
-objpaciente.setEndereco(Endereço);       
-objpaciente.setTelefone(Telefone);    
-objpaciente.setConvenio(Convênio);
-objpaciente.setSexo(Sexo);       
-        
-
-PacienteDAO objpacienteDAO = new PacienteDAO();
-
- try {
-     objpacienteDAO.addPaciente(objpaciente);
-     
-     txtarea.append("Paciente Cadastrado(a)!\n");
-     
- } catch (SQLException ex) {
-     Logger.getLogger(Cad_Pacientes.class.getName()).log(Level.SEVERE, null, ex);
-     
- }
-        
     }//GEN-LAST:event_SalvarActionPerformed
 
     private void atualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarActionPerformed
-      String Nome, cpf, RG, Endereço, Convênio, Telefone, Sexo;
-      
-      try {
-          int id = Integer.parseInt(idtxt.getText());
-           Nome = nometxt.getText();
-           cpf = cpftxt.getText();
-           RG = rgtxt.getText();
-           Endereço = endtxt.getText();
-           Telefone = teltxt.getText();
-           Convênio = contxt.getText();
-           Sexo = sexotxt.getText();
-          
-           
-           Paciente objpaciente = new Paciente();
-           objpaciente.setId(id);
-           
-            objpaciente.setNome(Nome);
-            objpaciente.setRg(RG);
-            objpaciente.setCpf(cpf);
-            objpaciente.setEndereco(Endereço);       
-            objpaciente.setTelefone(Telefone);    
-            objpaciente.setConvenio(Convênio);
-            objpaciente.setSexo(Sexo);       
-           
-            PacienteDAO objpacientedao = new PacienteDAO();
-            
-            objpacientedao.updatePaciente(objpaciente);
-            txtarea.append("Dados atualizados\n!");
-      } catch (NumberFormatException ex) {
-          txtarea.append("Erro id deve ser inteiro");
-          return;        
-      } catch (SQLException ex) {
-          Logger.getLogger(Cad_Pacientes.class.getName()).log(Level.SEVERE, null, ex);
-          
-      } 
       
     }//GEN-LAST:event_atualizarActionPerformed
 
     private void deletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletarActionPerformed
-        int id;
-    id = Integer.parseInt(idtxt.getText());
-
-    int confirm = JOptionPane.showConfirmDialog (
-    null,
-    "Tem certeza que deseja excluir?",
-    "Confirma  de exclusão",
-    JOptionPane.YES_NO_OPTION
-    );
-    if (confirm == JOptionPane.YES_OPTION) {
-
-    Paciente objpaciente = new Paciente();
-
-    objpaciente.setId(id);
-    PacienteDAO objpacientedao = new PacienteDAO();
-
-    try {
-    objpacientedao.deletePaciente(objpaciente);
-    txtarea.append("dados deletados com sucesso!\n");
-
-}
-
-catch(SQLException ex) {
-Logger.getLogger(Cad_Pacientes.class.getName()).log(Level.SEVERE, null, ex);
-
-
-}
+       
     }//GEN-LAST:event_deletarActionPerformed
-}
+
     /**
      * @param args the command line arguments
      */

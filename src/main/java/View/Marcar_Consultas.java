@@ -11,6 +11,7 @@ import Entidades.Paciente;
 import View.Tela_Secretaria;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -248,27 +249,7 @@ public class Marcar_Consultas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int crm = Integer.parseInt(txtcrmMed.getText());
-        
-        
-        MedicosDAO dao = new MedicosDAO();
-        
-        
-        try {
-            
-            //Medicos medico = dao.getMedicos(crm);
-            
-            Medicos medico = dao.getMedicos(crm);
-        
-            if (medico != null){               
-                txtidM.setText(String.valueOf(medico.getId()));
-                txtnomeM.setText(medico.getNome_medico());
-            } 
-        } catch (Exception ex){
-            txtnomeM.setText("Erro ao buscar Médico");
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
-        }
-        
+           
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -284,25 +265,7 @@ public class Marcar_Consultas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String cpf;
-        
-        PacienteDAO dao = new PacienteDAO();
-        
-        
-        try {
-            
-            //Medicos medico = dao.getMedicos(crm);
-            
-            Paciente objpac = dao.getAllPaciente(cpf);
-        
-            if (objpac != null){               
-                txtidP.setText(String.valueOf(objpac.getId()));
-                txtnomeP.setText(objpac.getNome());
-            } 
-        } catch (Exception ex){
-            txtnomeP.setText("Erro ao buscar Paciente");
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
-        }
+  
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
