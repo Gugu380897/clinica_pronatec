@@ -80,7 +80,7 @@ public class SecretariaDAO extends GenericDAO{
     public Secretaria LoginSecretaria(String cpf, String senha) throws SQLException{
         cn = new GenericDAO().getConnection();
         
-        String query = "SELECT * FROM secretaria WHERE cpf = ?, senha = ?";
+        String query = "SELECT * FROM secretaria WHERE cpf = ? AND senha = ?";
         
         PreparedStatement pstm = cn.prepareStatement(query);
         pstm.setString(1, cpf);

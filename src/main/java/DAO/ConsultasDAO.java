@@ -30,7 +30,10 @@ package DAO;
         {
             List<Consultas> consultas = new LinkedList<>();
             
-            try (ResultSet rs = executeQuery("SELECT * FROM medicos WHERE crm = ?, UNION SELECT * FROM pacientes WHERE cpf = ?")) {
+            try (ResultSet rs = executeQuery("SELECT * FROM medicos WHERE crm = ?"
+                    + " UNION"
+                    + " SELECT * FROM pacientes WHERE cpf = ?")) {
+                
                 while(rs.next())
                 {
                     consultas.add(populateConsultas(rs));
