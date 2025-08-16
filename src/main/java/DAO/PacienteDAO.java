@@ -5,13 +5,14 @@
 package DAO;
 
 import Entidades.Paciente;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
 public class PacienteDAO extends GenericDAO{
-    
+    Connection cn;
     
     public List<Paciente> getAllPaciente() throws SQLException 
     {
@@ -40,7 +41,7 @@ public class PacienteDAO extends GenericDAO{
         return paciente;
     }
     
-    public List<Paciente> getAllPacientesPorCpf(String cpf) throws SQLException 
+    public List<Paciente> getAllPacientesPorCpf(Paciente cpf) throws SQLException 
     {
         List<Paciente> paciente = new LinkedList<>();
         
@@ -64,6 +65,8 @@ public class PacienteDAO extends GenericDAO{
     
     public void updatePaciente(Paciente paciente) throws SQLException
     {
+       cn = new GenericDAO().getConnection();
+        
         String query = "UPDATE paciente SET nome = ?, telefone = ?, cpf = ?, rg = ?, endereco = ?, sexo = ?, convenio = ? WHERE id =?";
         executeComand(query,  paciente.getNome(), paciente.getTelefone(), paciente.getCpf(), paciente.getRg(), paciente.getEndereco(), paciente.getSexo(), paciente.getConvenio(), paciente.getId());        
         

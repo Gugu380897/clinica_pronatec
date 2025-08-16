@@ -52,7 +52,7 @@ public class MedicosDAO  extends GenericDAO
         return medicos;
     }
     
-    public List<Medicos> getAllMedicosPorCrm(int crm) throws SQLException 
+    public List<Medicos> getAllMedicosPorCrm(Medicos crm) throws SQLException 
     {
         List<Medicos> medicos = new LinkedList<>();
         
@@ -76,8 +76,8 @@ public class MedicosDAO  extends GenericDAO
     
     public void updateMedicos(Medicos medicos) throws SQLException
     {
-        String query = "UPDATE medicos SET crm = ?, nome_medico = ?, cpf = ?, rg = ?, telefone = ?, sexo = ? WHERE id =?";
-        executeComand(query, medicos.getCrm(), medicos.getNome_medico(), medicos.getCpf(), medicos.getRg(), medicos.getTelefone(), medicos.getSexo(), medicos.getId());        
+        String query = "UPDATE medicos SET crm = ?, nome_medico = ?, cpf = ?, rg = ?, telefone = ?,endereco = ?, sexo = ?, senha = ? WHERE id = ?";
+        executeComand(query, medicos.getCrm(), medicos.getNome_medico(), medicos.getCpf(), medicos.getRg(), medicos.getTelefone(),medicos.getEndereco(), medicos.getSexo(), medicos.getSenha(), medicos.getId());        
         
     }
     
@@ -92,12 +92,14 @@ public class MedicosDAO  extends GenericDAO
         Medicos retorno = new Medicos();
         
         retorno.setId(Integer.valueOf(rs.getString("id")));
-        retorno.setNome_medico(rs.getString("nome_medico"));
         retorno.setCrm(rs.getInt("crm"));
-        retorno.setRg(rs.getString("rg"));
+        retorno.setNome_medico(rs.getString("nome_medico"));
         retorno.setCpf(rs.getString("cpf"));
+        retorno.setRg(rs.getString("rg"));
         retorno.setTelefone(rs.getString("telefone"));
+        retorno.setEndereco(rs.getString("endereco"));
         retorno.setSexo(rs.getString("sexo"));
+        retorno.setSenha(rs.getString("senha"));
         
         
         return retorno;

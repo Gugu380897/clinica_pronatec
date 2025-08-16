@@ -1,7 +1,6 @@
 View\Marcar_Consultas$2.class
 View\Cad_Medico.class
 View\Cad_Pacientes$2.class
-View\Cad_Pacientes$9.class
 View\Tela_Inicial$3.class
 DAO\ConsultasDAO.class
 View\Cad_Medico$2.class
@@ -27,13 +26,11 @@ View\Cad_Medico$8.class
 Entidades\Paciente.class
 View\Cad_Medico$4.class
 View\Cad_Pacientes$5.class
-View\Cad_Pacientes$10.class
 View\Tela_Secretaria$3.class
 DAO\PacienteDAO.class
 DAO\SecretariaDAO.class
 View\Cad_Secretaria$5.class
 DAO\MedicosDAO.class
-View\Cad_Pacientes$8.class
 View\Cad_Secretaria$10.class
 View\Cad_Medico$15.class
 View\Cad_Medico$7.class
