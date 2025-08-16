@@ -317,7 +317,45 @@ public class Cad_Medico extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-     
+String Nome, cpf, telefone, rg, endereço, sexo, Senha;
+        
+        Nome = txtnome.getText();
+        cpf = txtcpf.getText();
+        telefone = txttele.getText();
+        rg = txtrg.getText();
+        endereço = txtend.getText();
+        sexo = txtsexo.getText();
+        Senha = txtsenha.getText();
+        
+        Medicos objmedico = new Medicos();
+        
+        objmedico.setNome_medico(Nome);
+        
+        String Crm = txtcrm.getText();
+        try {
+            int numero = Integer.parseInt(Crm);
+            objmedico.setCrm(numero);
+        } catch (NumberFormatException e) { 
+            JOptionPane.showMessageDialog(null, "Por favor digite numero inteiros no Crm");
+        }
+        
+        objmedico.setTelefone(telefone);
+        objmedico.setCpf(cpf);
+        objmedico.setRg(rg);
+        objmedico.setEndereco(endereço);
+        objmedico.setSexo(sexo);
+        objmedico.setSenha(Senha);
+        
+        MedicosDAO objmedicoDAO = new MedicosDAO();
+        
+        try {
+            
+            objmedicoDAO.addMedicos(objmedico);
+            JOptionPane.showMessageDialog(null, "Cadastrado com sucesso");
+        } catch (SQLException ex){
+            Logger.getLogger(Cad_Medico.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }     
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

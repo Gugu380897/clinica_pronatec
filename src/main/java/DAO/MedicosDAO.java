@@ -104,5 +104,9 @@ public class MedicosDAO  extends GenericDAO
         
     }
 
+    public Medicos getMedicoPorCrm(int crm) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     
 }
