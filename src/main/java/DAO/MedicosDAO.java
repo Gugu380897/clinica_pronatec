@@ -5,6 +5,7 @@
 package DAO;
  
 import Entidades.Medicos;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.LinkedList;
@@ -12,11 +13,12 @@ import java.util.List;
 
 public class MedicosDAO  extends GenericDAO
 {
-
+   Connection cn;
     
     public void getMedicos (int crmMedico) throws SQLException
     {
         
+        cn = new GenericDAO().getConnection();
         
         String query = "SELECT * FROM medicos where crm = ?";
         executeQuery(query, crmMedico);

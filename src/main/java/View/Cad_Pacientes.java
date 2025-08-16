@@ -274,7 +274,7 @@ public class Cad_Pacientes extends javax.swing.JFrame {
         txtarea.setText("");
 
         // Chama o método listarFuncionarios()
-        for (Paciente c : dao.getAllPaciente()) {
+        for (Paciente c : dao.getAllPaciente(cpf)) {
             txtarea.append(
                 "ID: " + c.getId() +
                 "Nome: " + c.getNome() +

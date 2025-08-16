@@ -14,11 +14,11 @@ import java.util.List;
 public class PacienteDAO extends GenericDAO{
     Connection cn;
     
-    public List<Paciente> getAllPaciente() throws SQLException 
+    public List<Paciente> getAllPaciente(String cpf) throws SQLException 
     {
         List<Paciente> paciente = new LinkedList<>();
         
-        try (ResultSet rs = executeQuery("SELECT * FROM paciente ")) {
+        try (ResultSet rs = executeQuery("SELECT * FROM paciente where cpf = ? ")) {
             while(rs.next())
             {
                 paciente.add(populatePaciente(rs));

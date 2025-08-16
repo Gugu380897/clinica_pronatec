@@ -31,6 +31,7 @@ DAO\SecretariaDAO.class
 View\Cad_Secretaria$5.class
 DAO\MedicosDAO.class
 View\Cad_Secretaria$10.class
+View\Marcar_Consultas$5.class
 View\Cad_Medico$15.class
 View\Cad_Medico$7.class
 View\Cad_Pacientes$7.class
