@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import DAO.GenericDAO;
 
 
 
@@ -52,7 +53,7 @@ public class Cad_Pacientes extends javax.swing.JFrame {
         contxt = new javax.swing.JTextField();
         idtxt = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jLimparCampos = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         nometxt = new javax.swing.JTextField();
@@ -120,12 +121,7 @@ public class Cad_Pacientes extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         jLabel1.setText("Cadastro do(a) Paciente:");
 
-        jLimparCampos.setText("Limpar Campos");
-        jLimparCampos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jLimparCamposActionPerformed(evt);
-            }
-        });
+        jButton5.setText("Limpar Campos");
 
         jLabel3.setText("Nome:");
 
@@ -178,7 +174,7 @@ public class Cad_Pacientes extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(contxt, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(51, 51, 51)
-                                .addComponent(jLimparCampos))
+                                .addComponent(jButton5))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addGap(18, 18, 18)
@@ -247,7 +243,7 @@ public class Cad_Pacientes extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(contxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLimparCampos))
+                    .addComponent(jButton5))
                 .addGap(24, 24, 24)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
@@ -271,149 +267,21 @@ public class Cad_Pacientes extends javax.swing.JFrame {
     }//GEN-LAST:event_endtxtActionPerformed
 
     private void consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarActionPerformed
-    PacienteDAO dao = new PacienteDAO();
-
-    try {
-        // Limpa a JTextArea antes de mostrar os dados
-        txtarea.setText("");
-
-        // Chama o método listarFuncionarios()
-        for (Paciente c : dao.getAllPaciente()) {
-            txtarea.append(
-                "ID: " + c.getId() +
-                "Nome: " + c.getNome() +
-                "Cpf: " + c.getCpf() +
-                "Rg: " + c.getRg() +
-                "Telefone: " + c.getTelefone() + 
-                "Endereco: " + c.getEndereco() +
-                "Sexo: " + c.getSexo() +
-                "Convênio" + c.getConvenio() + "\n"
-
-                
-            );
-        }
-    }
-     catch (SQLException ex) {
-              txtarea.append("Erro ao consultar Secretario(a)s: " + ex.getMessage());
-    }                                 // TODO add your handling code here:
-
+                                // TODO add your handling code here:
     }//GEN-LAST:event_consultarActionPerformed
 
     private void SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarActionPerformed
- String Nome, cpf, RG,Endereço, Telefone,Convênio, Sexo;
- Nome = nometxt.getText();
- cpf = cpftxt.getText();
- RG = rgtxt.getText();
- Endereço = endtxt.getText();
- Telefone = teltxt.getText();
- Convênio = contxt.getText();
- Sexo = sexotxt.getText();
  
-Paciente objpaciente = new Paciente();
-objpaciente.setNome(Nome);
-objpaciente.setRg(RG);
-objpaciente.setCpf(cpf);
-objpaciente.setEndereco(Endereço);       
-objpaciente.setTelefone(Telefone);    
-objpaciente.setConvenio(Convênio);
-objpaciente.setSexo(Sexo);       
-        
-
-PacienteDAO objpacienteDAO = new PacienteDAO();
-
- try {
-     objpacienteDAO.addPaciente(objpaciente);
-     
-     txtarea.append("Paciente Cadastrado(a)!\n");
-     
- } catch (SQLException ex) {
-     Logger.getLogger(Cad_Pacientes.class.getName()).log(Level.SEVERE, null, ex);
-     
- }
-        
     }//GEN-LAST:event_SalvarActionPerformed
 
     private void atualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarActionPerformed
-      String Nome, cpf, RG, Endereço, Convênio, Telefone, Sexo;
-      
-      try {
-          int id = Integer.parseInt(idtxt.getText());
-           Nome = nometxt.getText();
-           cpf = cpftxt.getText();
-           RG = rgtxt.getText();
-           Endereço = endtxt.getText();
-           Telefone = teltxt.getText();
-           Convênio = contxt.getText();
-           Sexo = sexotxt.getText();
-          
-           
-           Paciente objpaciente = new Paciente();
-           objpaciente.setId(id);
-           
-            objpaciente.setNome(Nome);
-            objpaciente.setRg(RG);
-            objpaciente.setCpf(cpf);
-            objpaciente.setEndereco(Endereço);       
-            objpaciente.setTelefone(Telefone);    
-            objpaciente.setConvenio(Convênio);
-            objpaciente.setSexo(Sexo);       
-           
-            PacienteDAO objpacientedao = new PacienteDAO();
-            
-            objpacientedao.updatePaciente(objpaciente);
-            txtarea.append("Dados atualizados\n!");
-      } catch (NumberFormatException ex) {
-          txtarea.append("Erro id deve ser inteiro \n!");
-          return;        
-      } catch (SQLException ex) {
-          Logger.getLogger(Cad_Pacientes.class.getName()).log(Level.SEVERE, null, ex);
-          
-      } 
       
     }//GEN-LAST:event_atualizarActionPerformed
 
     private void deletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletarActionPerformed
-        int id;
-    id = Integer.parseInt(idtxt.getText());
-
-    int confirm = JOptionPane.showConfirmDialog (
-    null,
-    "Tem certeza que deseja excluir?",
-    "Confirma  de exclusão",
-    JOptionPane.YES_NO_OPTION
-    );
-    if (confirm == JOptionPane.YES_OPTION) {
-
-    Paciente objpaciente = new Paciente();
-
-    objpaciente.setId(id);
-    PacienteDAO objpacientedao = new PacienteDAO();
-
-    try {
-    objpacientedao.deletePaciente(objpaciente);
-    txtarea.append("dados deletados com sucesso!\n");
-
-}
-
-    catch(SQLException ex) {
-    Logger.getLogger(Cad_Pacientes.class.getName()).log(Level.SEVERE, null, ex);
-
-
-        }
-    }
+       
     }//GEN-LAST:event_deletarActionPerformed
-    
-    private void jLimparCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLimparCamposActionPerformed
-        // TODO add your handling code here:
-        nometxt.setText("");
-        cpftxt.setText("");
-        teltxt.setText("");
-        rgtxt.setText("");
-        endtxt.setText("");
-        sexotxt.setText("");
-        contxt.setText("");
-    }//GEN-LAST:event_jLimparCamposActionPerformed
-}
+
     /**
      * @param args the command line arguments
      */
@@ -458,6 +326,7 @@ PacienteDAO objpacienteDAO = new PacienteDAO();
     private javax.swing.JButton deletar;
     private javax.swing.JTextField endtxt;
     private javax.swing.JTextField idtxt;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -469,7 +338,6 @@ PacienteDAO objpacienteDAO = new PacienteDAO();
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JButton jLimparCampos;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nometxt;
     private javax.swing.JTextField rgtxt;
