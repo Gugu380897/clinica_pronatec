@@ -45,7 +45,7 @@ package DAO;
         
         public Integer addConsultas(Consultas consultas) throws SQLException
         {
-            String query = "INSERT INTO consultas(nome_med, nome_pac, data, hora, ficha_medica) VALUES (?,?,?,?)";
+            String query = "INSERT INTO consultas(nome_med, nome_pac, data, hora,) VALUES (?,?,?,?)";
             executeComand(query, consultas.getIdDoctor(), consultas.getIdPaciente(), consultas.getData(), consultas.getHora());        
             return consultas.getIdConsulta();
             

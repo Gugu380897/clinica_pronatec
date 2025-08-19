@@ -58,7 +58,7 @@ public class Cad_Medico extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        areatexto = new javax.swing.JTextArea();
+        jTextArea1 = new javax.swing.JTextArea();
         jLabel12 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -175,9 +175,9 @@ public class Cad_Medico extends javax.swing.JFrame {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Pronatec");
 
-        areatexto.setColumns(20);
-        areatexto.setRows(5);
-        jScrollPane1.setViewportView(areatexto);
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
 
         jLabel12.setFont(new java.awt.Font("Times New Roman", 3, 36)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -317,19 +317,19 @@ public class Cad_Medico extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String nome, cpf, telefone, rg, endereco, sexo, senha;
+String Nome, cpf, telefone, rg, endereço, sexo, Senha;
         
-        nome = txtnome.getText();
+        Nome = txtnome.getText();
         cpf = txtcpf.getText();
         telefone = txttele.getText();
         rg = txtrg.getText();
-        endereco = txtend.getText();
+        endereço = txtend.getText();
         sexo = txtsexo.getText();
-        senha = txtsenha.getText();
+        Senha = txtsenha.getText();
         
         Medicos objmedico = new Medicos();
         
-        objmedico.setNome_medico(nome);
+        objmedico.setNome_medico(Nome);
         
         String Crm = txtcrm.getText();
         try {
@@ -342,9 +342,9 @@ public class Cad_Medico extends javax.swing.JFrame {
         objmedico.setTelefone(telefone);
         objmedico.setCpf(cpf);
         objmedico.setRg(rg);
-        objmedico.setEndereco(endereco);
+        objmedico.setEndereco(endereço);
         objmedico.setSexo(sexo);
-        objmedico.setSenha(senha);
+        objmedico.setSenha(Senha);
         
         MedicosDAO objmedicoDAO = new MedicosDAO();
         
@@ -355,37 +355,11 @@ public class Cad_Medico extends javax.swing.JFrame {
         } catch (SQLException ex){
             Logger.getLogger(Cad_Medico.class.getName()).log(Level.SEVERE, null, ex);
             
-        }
+        }     
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        
-        MedicosDAO consultar = new MedicosDAO();
-
-    try {
-        // Limpa a JTextArea antes de mostrar os dados
-        areatexto.setText("");
-
-        // Chama o método listarFuncionarios()
-        for (Medicos c : consultar.getAllMedicos()) {
-            areatexto.append(
-                "id: " + c.getId() +
-                ", crm: " + c.getCrm() +
-                ", nome: " + c.getNome_medico() +
-                ", cpf: " + c.getCpf() +
-                ", rg: " + c.getRg() +
-                ", telefone: " + c.getTelefone() +
-                ", endereco: " + c.getEndereco() +        
-                ", sexo: " + c.getSexo() +
-                ", senha: " + c.getSenha() + "\n"
-            );
-        }
-
-    }   catch (SQLException ex) {
-        Logger.getLogger(Cad_Medico.class.getName()).log(Level.SEVERE, null, ex);
-    }
-
-        
+        // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void txtnomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnomeActionPerformed
@@ -393,79 +367,13 @@ public class Cad_Medico extends javax.swing.JFrame {
     }//GEN-LAST:event_txtnomeActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        String nome, cpf, endereco, rg, telefone, sexo, senha;
-
-try {
-    int id = Integer.parseInt(txtid.getText());
-    int crm = Integer.parseInt(txtcrm.getText());
-    nome = txtnome.getText();
-    cpf = txtcpf.getText();
-    telefone = txttele.getText();
-    rg = txtrg.getText();
-    endereco = txtend.getText();
-    sexo = txtsexo.getText();
-    senha = txtsenha.getText();
-
-    Medicos objmedico = new Medicos();
-
-    objmedico.setId(id);
-    objmedico.setNome_medico(nome);
-    objmedico.setCrm(crm);
-    objmedico.setTelefone(telefone);
-    objmedico.setCpf(cpf);
-    objmedico.setRg(rg);
-    objmedico.setEndereco(endereco);
-    objmedico.setSexo(sexo);
-    objmedico.setSenha(senha);
-
-    MedicosDAO objmedicodao = new MedicosDAO();
-
-    objmedicodao.updateMedicos(objmedico);
-    areatexto.append("Dados Atualizados com Sucesso!\n");
-
-} catch (NumberFormatException ex) {
-    areatexto.append("Erro: ID ou CRM devem ser números inteiros.\n");
-    return;
-} catch (SQLException ex) {
-    Logger.getLogger(Cad_Medico.class.getName()).log(Level.SEVERE, null, ex);
-}
-
+        // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        int id;
-        
-        id =  Integer.parseInt(txtid.getText());
-       
-        int confirm = JOptionPane.showConfirmDialog(
-        null,
-        "Tem certeza que quer deletar este registro ?",
-        "Comfirmação de Exclusão",
-        JOptionPane.YES_NO_OPTION
-        );
-        
-        if (confirm == JOptionPane.YES_OPTION){
-            
-        Medicos objmedico = new Medicos();
-        
-        objmedico.setId(id);
-        
-        
-        MedicosDAO objmedicoDAO = new MedicosDAO();
-        
-        try {           
-            objmedicoDAO.deleteMedicos(objmedico);
-            
-            areatexto.append("Dados deletados com Sucesso!\n");
-        } catch (SQLException ex){
-            Logger.getLogger(Cad_Medico.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
-        else{
-            areatexto.append(" O ato de: (deletar dados), foi cancelado pelo o usuário");
-        }
-    }
-    
+
     private void txtidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtidActionPerformed
@@ -499,14 +407,7 @@ try {
     }//GEN-LAST:event_txtsenhaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        txtnome.setText("");
-        txtcrm.setText("");
-        txtcpf.setText("");
-        txttele.setText("");
-        txtrg.setText("");
-        txtend.setText("");
-        txtsexo.setText("");
-        txtsenha.setText("");
+        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -545,7 +446,6 @@ try {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea areatexto;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -564,6 +464,7 @@ try {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField txtcpf;
     private javax.swing.JTextField txtcrm;
     private javax.swing.JTextField txtend;

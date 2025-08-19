@@ -95,6 +95,17 @@ public class PacienteDAO extends GenericDAO{
         return retorno;
         
     }
+
+    public Paciente getPacientes(String cpf) throws SQLException {
+    String query = "SELECT * FROM paciente WHERE cpf = ?";
+    try (ResultSet rs = executeQuery(query, cpf)) {
+        if (rs.next()) {
+            return populatePaciente(rs);
+        }
+    }
+    return null; // Retorna null se não encontrar nenhum paciente com esse CPF
+}
+
     
     
 }
