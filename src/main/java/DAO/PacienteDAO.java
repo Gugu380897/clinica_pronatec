@@ -12,7 +12,6 @@ import java.util.List;
 
 public class PacienteDAO extends GenericDAO{
     
-    
     public List<Paciente> getAllPaciente() throws SQLException 
     {
         List<Paciente> paciente = new LinkedList<>();
